@@ -10,6 +10,7 @@ Sample Jetpack compose project with MVVM architecture. Project includes Hilt for
 - Gson converter factory
 - Kotlin Coroutine
 - Flow for emit and collect data
+- Coil for Image loading
 
 ## This repository show the List of Country Flags and you can select to know it's name
 
