@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Country List</string>
+    <string name="error">Something went wrong. Try again…</string>
 </resources>

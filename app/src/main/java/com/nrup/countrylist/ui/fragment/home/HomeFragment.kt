@@ -6,8 +6,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.nrup.countrylist.R
 import com.nrup.countrylist.ui.components.CustomProgressBar
+import com.nrup.countrylist.ui.components.ErrorButton
 import com.nrup.countrylist.ui.fragment.screen.CountryListUI
 import com.nrup.countrylist.utils.Response
 import com.nrup.countrylist.viewmodel.HomeViewModel
@@ -40,7 +43,11 @@ fun HomeFragment(
             }
 
             is Response.Failure -> {
-
+                ErrorButton(modifier = Modifier.fillMaxWidth(),
+                    text = stringResource(id = R.string.error),
+                    onClick = {
+                        launch()
+                    })
             }
         }
 
