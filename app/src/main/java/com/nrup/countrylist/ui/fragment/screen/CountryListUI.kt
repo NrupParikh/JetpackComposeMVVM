@@ -1,10 +1,9 @@
 package com.nrup.countrylist.ui.fragment.screen
 
 import android.content.Context
-import android.util.Log
 import android.widget.Toast
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,6 +11,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -36,8 +38,6 @@ fun CountryListUI(data: CountryListResponse?) {
 
     var selectedIndex by remember { mutableStateOf(0) }
     val onItemClick = { index: Int -> selectedIndex = index }
-
-    Log.d("TAG", "SIZE ${data?.size ?: 0}")
 
     val mContext = LocalContext.current
 
@@ -64,34 +64,48 @@ fun CountryListItem(
     onClick: (Int) -> Unit,
     mContext: Context
 ) {
-    Log.d("IMAGE at $index", data?.flags?.png ?: "")
 
     val imagePainter = rememberAsyncImagePainter(
         model = data?.flags?.png,
         error = painterResource(id = R.drawable.ic_launcher_foreground)
     )
 
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(200.dp)
-            .background(if (selected) MaterialTheme.colorScheme.secondary else Color.White)
-            .padding(8.dp)
-    ) {
-        Image(
-            modifier = Modifier
-                .fillMaxSize()
-                .clickable {
-                    onClick.invoke(index)
-                    Toast
-                        .makeText(mContext, "You have selected ${data?.name}", Toast.LENGTH_SHORT)
-                        .show()
-                },
-            painter = imagePainter,
-            contentDescription = "",
-            contentScale = ContentScale.Crop,
+    Card(
+        shape = RoundedCornerShape(8.dp),
+        modifier = Modifier.padding(10.dp),
+        border = BorderStroke(
+            4.dp,
+            (if (selected) Color.Black else MaterialTheme.colorScheme.background)
+        ),
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 10.dp
         )
+    ) {
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp)
+
+        ) {
+            Image(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clickable {
+                        onClick.invoke(index)
+                        Toast
+                            .makeText(
+                                mContext,
+                                "You have selected ${data?.name}",
+                                Toast.LENGTH_SHORT
+                            )
+                            .show()
+                    },
+                painter = imagePainter,
+                contentDescription = "",
+                contentScale = ContentScale.Crop,
+            )
+        }
     }
 
 }
