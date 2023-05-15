@@ -49,7 +49,7 @@ fun HomeScreen(countryList: CountryListResponse?, onClickToDetailScreen: (Pair<I
                 onClick = onClickToDetailScreen,
                 mContext
             )
-            Divider(color = Color.DarkGray, thickness = 1.dp)
+            Divider(color = MaterialTheme.colorScheme.secondary, thickness = 1.dp)
         }
 
     }
@@ -74,7 +74,7 @@ fun CountryListItem(
         modifier = Modifier.padding(10.dp),
         border = BorderStroke(
             4.dp,
-            (if (selected) Color.Black else MaterialTheme.colorScheme.background)
+            (if (selected)  MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.background)
         ),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 10.dp
@@ -92,13 +92,6 @@ fun CountryListItem(
                     .fillMaxSize()
                     .clickable {
                         onClick.invoke(Pair(index,data?.alpha2Code.toString()))
-                        Toast
-                            .makeText(
-                                mContext,
-                                "You have selected ${data?.name}",
-                                Toast.LENGTH_SHORT
-                            )
-                            .show()
                     },
                 painter = imagePainter,
                 contentDescription = "",
