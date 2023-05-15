@@ -1,8 +1,9 @@
-package com.nrup.countrylist.domain.model
+package com.nrup.countrylist.domain.model.countrylist
+
 
 import com.google.gson.annotations.SerializedName
 
-data class CountryListResponseItem(
+data class CountryData(
     @SerializedName("alpha2Code")
     val alpha2Code: String?,
     @SerializedName("alpha3Code")

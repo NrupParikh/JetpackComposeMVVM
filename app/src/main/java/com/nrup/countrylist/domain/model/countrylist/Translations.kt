@@ -1,4 +1,5 @@
-package com.nrup.countrylist.domain.model
+package com.nrup.countrylist.domain.model.countrylist
+
 
 import com.google.gson.annotations.SerializedName
 

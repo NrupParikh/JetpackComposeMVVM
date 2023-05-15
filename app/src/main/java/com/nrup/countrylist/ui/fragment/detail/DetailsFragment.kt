@@ -1,6 +1,7 @@
-package com.nrup.countrylist.ui.fragment.home
+package com.nrup.countrylist.ui.fragment.detail
 
 import android.content.res.Configuration
+import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
@@ -13,19 +14,20 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.nrup.countrylist.R
 import com.nrup.countrylist.ui.components.CustomProgressBar
 import com.nrup.countrylist.ui.components.ErrorButton
-import com.nrup.countrylist.ui.fragment.home.screen.HomeScreen
+import com.nrup.countrylist.ui.fragment.detail.screen.DetailsScreen
 import com.nrup.countrylist.ui.theme.CountryListTheme
 import com.nrup.countrylist.utils.Response
-import com.nrup.countrylist.viewmodel.HomeViewModel
+import com.nrup.countrylist.viewmodel.DetailsViewModel
 
 @Composable
-fun HomeFragment(
-    modifier: Modifier = Modifier,
-    homeViewModel: HomeViewModel = hiltViewModel(),
-    onClickToDetailScreen: (Pair<Int,String>) -> Unit = {},
+fun DetailsFragment(
+    modifier: Modifier,
+    countryCode: String,
+    detailsViewModel: DetailsViewModel = hiltViewModel()
 ) {
+
     fun launch() {
-        homeViewModel.getCountryList()
+        detailsViewModel.getCountryDetails(countryCode)
     }
 
     launch()
@@ -34,7 +36,7 @@ fun HomeFragment(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
-        when (val countryResponse = homeViewModel.countryListState.value) {
+        when (val countryDataResponse = detailsViewModel.countryDetailsState.value) {
             is Response.Loading -> {
                 CustomProgressBar(
                     modifier = Modifier.fillMaxWidth()
@@ -42,10 +44,7 @@ fun HomeFragment(
             }
 
             is Response.Success -> {
-
-                HomeScreen(
-                    countryResponse.data, onClickToDetailScreen = onClickToDetailScreen
-                )
+                DetailsScreen(countryData = countryDataResponse.data)
             }
 
             is Response.Failure -> {
@@ -56,15 +55,15 @@ fun HomeFragment(
                     })
             }
         }
-
     }
 }
+
 
 @Preview(showBackground = true)
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun HomeFragmentPreview() {
+fun DetailsFragmentPreview() {
     CountryListTheme {
-        HomeFragment()
+        DetailsFragment(modifier = Modifier, countryCode = "")
     }
 }

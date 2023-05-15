@@ -1,11 +1,11 @@
 package com.nrup.countrylist.viewmodel
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nrup.countrylist.domain.model.countrylist.CountryData
-import com.nrup.countrylist.domain.model.countrylist.CountryListResponse
 import com.nrup.countrylist.domain.repository.CountryRepository
 import com.nrup.countrylist.utils.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,22 +13,22 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class DetailsViewModel @Inject constructor(
     private val countryRepository: CountryRepository
 ) : ViewModel() {
 
-    // ======== COUNTRY LIST
+    // ======== COUNTRY DETAILS
 
-    private val _countryListState =
-        mutableStateOf<Response<CountryListResponse>>(Response.Success(null))
-    val countryListState: State<Response<CountryListResponse>> = _countryListState
+    private val _countryDetailsState =
+        mutableStateOf<Response<CountryData>>(Response.Success(null))
 
-    fun getCountryList() {
+    val countryDetailsState: State<Response<CountryData>> = _countryDetailsState
+
+    fun getCountryDetails(countryCode: String) {
         viewModelScope.launch {
-            countryRepository.getAllCountries().collect { response ->
-                _countryListState.value = response
+            countryRepository.getCountryDetails(countryCode).collect { response ->
+                _countryDetailsState.value = response
             }
         }
     }
-
 }

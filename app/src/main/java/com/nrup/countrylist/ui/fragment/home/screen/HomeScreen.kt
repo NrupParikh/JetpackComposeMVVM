@@ -1,4 +1,4 @@
-package com.nrup.countrylist.ui.fragment.screen
+package com.nrup.countrylist.ui.fragment.home.screen
 
 import android.content.Context
 import android.widget.Toast
@@ -20,7 +20,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,24 +29,24 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.nrup.countrylist.R
-import com.nrup.countrylist.domain.model.CountryListResponse
-import com.nrup.countrylist.domain.model.CountryListResponseItem
+import com.nrup.countrylist.domain.model.countrylist.CountryData
+import com.nrup.countrylist.domain.model.countrylist.CountryListResponse
 
 @Composable
-fun CountryListUI(data: CountryListResponse?) {
+fun HomeScreen(countryList: CountryListResponse?, onClickToDetailScreen: (Pair<Int,String>) -> Unit = {}) {
 
-    var selectedIndex by remember { mutableStateOf(0) }
-    val onItemClick = { index: Int -> selectedIndex = index }
+    val selectedIndex by remember { mutableStateOf(0) }
+    //val onItemClick = { index: Int -> selectedIndex = index }
 
     val mContext = LocalContext.current
 
     LazyColumn() {
-        items(data?.size ?: 0) { index ->
+        items(countryList?.size ?: 0) { index ->
             CountryListItem(
                 index = index,
-                data?.get(index),
+                countryList?.get(index),
                 selected = selectedIndex == index,
-                onClick = onItemClick,
+                onClick = onClickToDetailScreen,
                 mContext
             )
             Divider(color = Color.DarkGray, thickness = 1.dp)
@@ -59,9 +58,9 @@ fun CountryListUI(data: CountryListResponse?) {
 @Composable
 fun CountryListItem(
     index: Int,
-    data: CountryListResponseItem?,
+    data: CountryData?,
     selected: Boolean,
-    onClick: (Int) -> Unit,
+    onClick: (Pair<Int,String>) -> Unit,
     mContext: Context
 ) {
 
@@ -92,7 +91,7 @@ fun CountryListItem(
                 modifier = Modifier
                     .fillMaxSize()
                     .clickable {
-                        onClick.invoke(index)
+                        onClick.invoke(Pair(index,data?.alpha2Code.toString()))
                         Toast
                             .makeText(
                                 mContext,

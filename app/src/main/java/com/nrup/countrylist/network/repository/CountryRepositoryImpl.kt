@@ -1,6 +1,7 @@
 package com.nrup.countrylist.network.repository
 
-import com.nrup.countrylist.domain.model.CountryListResponse
+import com.nrup.countrylist.domain.model.countrylist.CountryData
+import com.nrup.countrylist.domain.model.countrylist.CountryListResponse
 import com.nrup.countrylist.domain.repository.CountryRepository
 import com.nrup.countrylist.network.service.CountryService
 import com.nrup.countrylist.utils.Response
@@ -20,6 +21,17 @@ class CountryRepositoryImpl @Inject constructor(
         try {
             emit(Response.Loading)
             val responseFromApi = countryService.getAllCountries()
+            emit(Response.Success(responseFromApi))
+        } catch (e: Exception) {
+            emit(Response.Failure(e))
+        }
+    }.flowOn(Dispatchers.IO)
+
+    override fun getCountryDetails(countryCode: String): Flow<Response<CountryData>> = flow {
+
+        try {
+            emit(Response.Loading)
+            val responseFromApi = countryService.getCountryDetails(countryCode)
             emit(Response.Success(responseFromApi))
         } catch (e: Exception) {
             emit(Response.Failure(e))
