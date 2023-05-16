@@ -52,6 +52,10 @@ fun MainScreen() {
                 navArgument(ARG_COUNTRY_CODE) {
                     type = NavType.StringType
                     defaultValue = ""
+                },
+                navArgument(ARG_COUNTRY_NAME) {
+                    type = NavType.StringType
+                    defaultValue = ""
                 }
             )
         ) {
