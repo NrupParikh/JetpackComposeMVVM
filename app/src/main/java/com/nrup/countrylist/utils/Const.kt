@@ -14,4 +14,6 @@ object Const{
     const val HOME_SCREEN = "home"
     const val DETAIL_SCREEN  = "detail"
     const val DETAIL_ARG_COUNTRY_ID = "alpha2Code"
+
+
 }

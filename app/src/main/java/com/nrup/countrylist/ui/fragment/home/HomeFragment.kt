@@ -20,9 +20,8 @@ import com.nrup.countrylist.viewmodel.HomeViewModel
 
 @Composable
 fun HomeFragment(
-    modifier: Modifier = Modifier,
     homeViewModel: HomeViewModel = hiltViewModel(),
-    onClickToDetailScreen: (Pair<Int,String>) -> Unit = {},
+    onClickToDetailScreen: (Pair<Int, String>) -> Unit = {},
 ) {
     fun launch() {
         homeViewModel.getCountryList()

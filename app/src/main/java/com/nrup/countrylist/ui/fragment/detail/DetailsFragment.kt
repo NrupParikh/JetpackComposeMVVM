@@ -1,7 +1,6 @@
 package com.nrup.countrylist.ui.fragment.detail
 
 import android.content.res.Configuration
-import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
@@ -21,7 +20,6 @@ import com.nrup.countrylist.viewmodel.DetailsViewModel
 
 @Composable
 fun DetailsFragment(
-    modifier: Modifier,
     countryCode: String,
     detailsViewModel: DetailsViewModel = hiltViewModel()
 ) {
@@ -64,6 +62,6 @@ fun DetailsFragment(
 @Composable
 fun DetailsFragmentPreview() {
     CountryListTheme {
-        DetailsFragment(modifier = Modifier, countryCode = "")
+        DetailsFragment(countryCode = "")
     }
 }

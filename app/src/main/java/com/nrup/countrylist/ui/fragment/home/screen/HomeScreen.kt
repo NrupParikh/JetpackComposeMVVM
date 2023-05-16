@@ -1,7 +1,6 @@
 package com.nrup.countrylist.ui.fragment.home.screen
 
 import android.content.Context
-import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -22,7 +21,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -33,10 +31,12 @@ import com.nrup.countrylist.domain.model.countrylist.CountryData
 import com.nrup.countrylist.domain.model.countrylist.CountryListResponse
 
 @Composable
-fun HomeScreen(countryList: CountryListResponse?, onClickToDetailScreen: (Pair<Int,String>) -> Unit = {}) {
+fun HomeScreen(
+    countryList: CountryListResponse?,
+    onClickToDetailScreen: (Pair<Int, String>) -> Unit = {}
+) {
 
     val selectedIndex by remember { mutableStateOf(0) }
-    //val onItemClick = { index: Int -> selectedIndex = index }
 
     val mContext = LocalContext.current
 
@@ -60,7 +60,7 @@ fun CountryListItem(
     index: Int,
     data: CountryData?,
     selected: Boolean,
-    onClick: (Pair<Int,String>) -> Unit,
+    onClick: (Pair<Int, String>) -> Unit,
     mContext: Context
 ) {
 
@@ -74,7 +74,7 @@ fun CountryListItem(
         modifier = Modifier.padding(10.dp),
         border = BorderStroke(
             4.dp,
-            (if (selected)  MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.background)
+            (if (selected) MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.background)
         ),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 10.dp
@@ -91,7 +91,7 @@ fun CountryListItem(
                 modifier = Modifier
                     .fillMaxSize()
                     .clickable {
-                        onClick.invoke(Pair(index,data?.alpha2Code.toString()))
+                        onClick.invoke(Pair(index, data?.alpha2Code.toString()))
                     },
                 painter = imagePainter,
                 contentDescription = "",
