@@ -6,10 +6,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.nrup.countrylist.R
 import com.nrup.countrylist.ui.components.CustomProgressBar
 import com.nrup.countrylist.ui.components.ErrorButton
@@ -23,6 +27,8 @@ fun HomeFragment(
     homeViewModel: HomeViewModel = hiltViewModel(),
     onClickToDetailScreen: (Triple<Int, String,String>) -> Unit = {},
 ) {
+    val isLoading by homeViewModel.isLoading.collectAsState()
+    val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = isLoading)
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -36,10 +42,14 @@ fun HomeFragment(
             }
 
             is Response.Success -> {
+                SwipeRefresh(state = swipeRefreshState, onRefresh = {
+                    homeViewModel.getCountryList()
+                }) {
+                    HomeScreen(
+                        countryResponse.data, onClickToDetailScreen = onClickToDetailScreen
+                    )
+                }
 
-                HomeScreen(
-                    countryResponse.data, onClickToDetailScreen = onClickToDetailScreen
-                )
             }
 
             is Response.Failure -> {

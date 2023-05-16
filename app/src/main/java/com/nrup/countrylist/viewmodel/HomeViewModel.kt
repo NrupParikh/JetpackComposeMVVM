@@ -8,6 +8,8 @@ import com.nrup.countrylist.domain.model.countrylist.CountryListResponse
 import com.nrup.countrylist.domain.repository.CountryRepository
 import com.nrup.countrylist.utils.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,14 +20,19 @@ class HomeViewModel @Inject constructor(
 
     // ======== COUNTRY LIST
 
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading = _isLoading.asStateFlow()
+
     private val _countryListState =
         mutableStateOf<Response<CountryListResponse>>(Response.Success(null))
     val countryListState: State<Response<CountryListResponse>> = _countryListState
 
     fun getCountryList() {
         viewModelScope.launch {
+            _isLoading.value = true
             countryRepository.getAllCountries().collect { response ->
                 _countryListState.value = response
+                _isLoading.value = false
             }
         }
     }
