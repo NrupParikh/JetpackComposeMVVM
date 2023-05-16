@@ -27,14 +27,14 @@ class MainActivity : ComponentActivity() {
         setContent {
             CountryListTheme {
                 // A surface container using the 'background' color from the theme
-                CountryListScreen()
+                MainScreen()
             }
         }
     }
 }
 
 @Composable
-fun CountryListScreen() {
+fun MainScreen() {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
