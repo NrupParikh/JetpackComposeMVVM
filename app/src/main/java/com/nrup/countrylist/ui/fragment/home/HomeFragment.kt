@@ -23,11 +23,6 @@ fun HomeFragment(
     homeViewModel: HomeViewModel = hiltViewModel(),
     onClickToDetailScreen: (Pair<Int, String>) -> Unit = {},
 ) {
-    fun launch() {
-        homeViewModel.getCountryList()
-    }
-
-    launch()
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -51,7 +46,7 @@ fun HomeFragment(
                 ErrorButton(modifier = Modifier.fillMaxWidth(),
                     text = stringResource(id = R.string.error),
                     onClick = {
-                        launch()
+                        homeViewModel.getCountryList()
                     })
             }
         }

@@ -4,7 +4,6 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.nrup.countrylist.domain.model.countrylist.CountryData
 import com.nrup.countrylist.domain.model.countrylist.CountryListResponse
 import com.nrup.countrylist.domain.repository.CountryRepository
 import com.nrup.countrylist.utils.Response
@@ -29,6 +28,11 @@ class HomeViewModel @Inject constructor(
                 _countryListState.value = response
             }
         }
+    }
+
+    // Load country list when VM created
+    init {
+        getCountryList()
     }
 
 }

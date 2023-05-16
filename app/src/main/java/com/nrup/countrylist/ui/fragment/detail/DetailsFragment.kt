@@ -20,15 +20,8 @@ import com.nrup.countrylist.viewmodel.DetailsViewModel
 
 @Composable
 fun DetailsFragment(
-    countryCode: String,
     detailsViewModel: DetailsViewModel = hiltViewModel()
 ) {
-
-    fun launch() {
-        detailsViewModel.getCountryDetails(countryCode)
-    }
-
-    launch()
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -49,7 +42,7 @@ fun DetailsFragment(
                 ErrorButton(modifier = Modifier.fillMaxWidth(),
                     text = stringResource(id = R.string.error),
                     onClick = {
-                        launch()
+                        detailsViewModel.getCountryDetails()
                     })
             }
         }
@@ -62,6 +55,6 @@ fun DetailsFragment(
 @Composable
 fun DetailsFragmentPreview() {
     CountryListTheme {
-        DetailsFragment(countryCode = "")
+        DetailsFragment()
     }
 }

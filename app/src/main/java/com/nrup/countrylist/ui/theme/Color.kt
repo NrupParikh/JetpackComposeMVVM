@@ -9,3 +9,11 @@ val Pink80 = Color(0xFFb7f8db)
 val Purple40 = Color(0xFF004e95)
 val PurpleGrey40 = Color(0xFF00aded)
 val Pink40 = Color(0xFFa9e2f7)
+
+// For shimmer effect
+
+val ShimmerColorShades = listOf(
+    Color.LightGray.copy(alpha = 0.9f),
+    Color.LightGray.copy(alpha = 0.2f),
+    Color.LightGray.copy(alpha = 0.9f)
+)
