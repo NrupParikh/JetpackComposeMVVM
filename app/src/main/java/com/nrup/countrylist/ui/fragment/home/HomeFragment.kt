@@ -27,6 +27,7 @@ fun HomeFragment(
     homeViewModel: HomeViewModel = hiltViewModel(),
     onClickToDetailScreen: (Triple<Int, String,String>) -> Unit = {},
 ) {
+    // For swipe to refresh
     val isLoading by homeViewModel.isLoading.collectAsState()
     val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = isLoading)
 

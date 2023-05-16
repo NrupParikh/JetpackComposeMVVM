@@ -20,6 +20,7 @@ class HomeViewModel @Inject constructor(
 
     // ======== COUNTRY LIST
 
+    // For swipe to refresh
     private val _isLoading = MutableStateFlow(false)
     val isLoading = _isLoading.asStateFlow()
 

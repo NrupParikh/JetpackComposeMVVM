@@ -6,10 +6,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.nrup.countrylist.R
 import com.nrup.countrylist.ui.components.CustomProgressBar
 import com.nrup.countrylist.ui.components.ErrorButton
@@ -23,6 +27,10 @@ fun DetailsFragment(
     detailsViewModel: DetailsViewModel = hiltViewModel()
 ) {
 
+    // For swipe to refresh
+    val isLoading by detailsViewModel.isLoading.collectAsState()
+    val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = isLoading)
+
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -35,7 +43,12 @@ fun DetailsFragment(
             }
 
             is Response.Success -> {
-                DetailsScreen(countryData = countryDataResponse.data)
+
+                SwipeRefresh(state = swipeRefreshState, onRefresh = {
+                    detailsViewModel.getCountryDetails()
+                }) {
+                    DetailsScreen(countryData = countryDataResponse.data)
+                }
             }
 
             is Response.Failure -> {

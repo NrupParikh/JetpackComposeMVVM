@@ -12,6 +12,8 @@ import com.nrup.countrylist.utils.Const.ARG_COUNTRY_CODE
 import com.nrup.countrylist.utils.Const.ARG_COUNTRY_NAME
 import com.nrup.countrylist.utils.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,6 +22,10 @@ class DetailsViewModel @Inject constructor(
     private val countryRepository: CountryRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
+
+    // For swipe to refresh
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading = _isLoading.asStateFlow()
 
     // No need to use View Model Factory for sending parameter in VM.
     // Getting Argument from SavedStateHandle in VM with the help of nav arg
@@ -36,8 +42,10 @@ class DetailsViewModel @Inject constructor(
 
     fun getCountryDetails() {
         viewModelScope.launch {
+            _isLoading.value = true
             countryRepository.getCountryDetails(countryCode).collect { response ->
                 _countryDetailsState.value = response
+                _isLoading.value = false
             }
         }
     }
