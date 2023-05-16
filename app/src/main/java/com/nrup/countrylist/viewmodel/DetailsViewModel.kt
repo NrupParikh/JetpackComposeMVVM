@@ -1,5 +1,6 @@
 package com.nrup.countrylist.viewmodel
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
@@ -8,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.nrup.countrylist.domain.model.countrylist.CountryData
 import com.nrup.countrylist.domain.repository.CountryRepository
 import com.nrup.countrylist.utils.Const.ARG_COUNTRY_CODE
+import com.nrup.countrylist.utils.Const.ARG_COUNTRY_NAME
 import com.nrup.countrylist.utils.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -23,6 +25,7 @@ class DetailsViewModel @Inject constructor(
     // Getting Argument from SavedStateHandle in VM with the help of nav arg
 
     private val countryCode = checkNotNull(savedStateHandle.get<String>(ARG_COUNTRY_CODE))
+    private val countryName = checkNotNull(savedStateHandle.get<String>(ARG_COUNTRY_NAME))
 
     // ======== COUNTRY DETAILS
 
@@ -41,6 +44,8 @@ class DetailsViewModel @Inject constructor(
 
     // Load Country Details when VM Created
     init {
+        Log.d("TAG","Country Code $countryCode")
+        Log.d("TAG","Country Name $countryName")
         getCountryDetails()
     }
 }

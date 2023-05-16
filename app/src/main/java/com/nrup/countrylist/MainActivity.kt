@@ -13,6 +13,7 @@ import com.nrup.countrylist.ui.fragment.detail.DetailsFragment
 import com.nrup.countrylist.ui.fragment.home.HomeFragment
 import com.nrup.countrylist.ui.theme.CountryListTheme
 import com.nrup.countrylist.utils.Const.ARG_COUNTRY_CODE
+import com.nrup.countrylist.utils.Const.ARG_COUNTRY_NAME
 import com.nrup.countrylist.utils.Const.DETAIL_SCREEN
 import com.nrup.countrylist.utils.Route
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,11 +43,11 @@ fun CountryListScreen() {
 
         composable(route = Route.Home.route) {
             HomeFragment {
-                navController.navigate(route = "$DETAIL_SCREEN/${it.second}")
+                navController.navigate(route = "$DETAIL_SCREEN/${it.second}/${it.third}")
             }
         }
 
-        composable(route = "$DETAIL_SCREEN/{$ARG_COUNTRY_CODE}",
+        composable(route = "$DETAIL_SCREEN/{$ARG_COUNTRY_CODE}/{$ARG_COUNTRY_NAME}",
             arguments = listOf(
                 navArgument(ARG_COUNTRY_CODE) {
                     type = NavType.StringType

@@ -9,6 +9,7 @@ object Const{
     //https://restcountries.com/v2/alpha/IND
     const val METHOD_COUNTRY_DETAILS = "/v2/alpha/{countryCode}"
     const val ARG_COUNTRY_CODE = "countryCode"
+    const val ARG_COUNTRY_NAME = "countryName"
 
     // SCREEN PARAMETERS
     const val HOME_SCREEN = "home"

@@ -25,7 +25,7 @@ fun CountryListItem(
     index: Int,
     data: CountryData?,
     selected: Boolean,
-    onClick: ((Pair<Int, String>) -> Unit)?,
+    onClick: ((Triple<Int, String,String>) -> Unit)?,
 ) {
 
     val imagePainter = rememberAsyncImagePainter(
@@ -51,7 +51,7 @@ fun CountryListItem(
             modifier = Modifier
                 .fillMaxSize()
                 .clickable {
-                    onClick?.invoke(Pair(index, data?.alpha2Code.toString()))
+                    onClick?.invoke(Triple(index, data?.alpha2Code.toString(),data?.name.toString()))
                 },
             painter = imagePainter,
             contentDescription = "",

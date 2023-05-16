@@ -21,7 +21,7 @@ import com.nrup.countrylist.viewmodel.HomeViewModel
 @Composable
 fun HomeFragment(
     homeViewModel: HomeViewModel = hiltViewModel(),
-    onClickToDetailScreen: (Pair<Int, String>) -> Unit = {},
+    onClickToDetailScreen: (Triple<Int, String,String>) -> Unit = {},
 ) {
 
     Surface(

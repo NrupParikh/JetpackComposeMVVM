@@ -15,7 +15,7 @@ import com.nrup.countrylist.ui.components.CountryListItem
 @Composable
 fun HomeScreen(
     countryList: CountryListResponse?,
-    onClickToDetailScreen: (Pair<Int, String>) -> Unit = {}
+    onClickToDetailScreen: (Triple<Int, String,String>) -> Unit = {}
 ) {
 
     val selectedIndex by remember { mutableStateOf(0) }
