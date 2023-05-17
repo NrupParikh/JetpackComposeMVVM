@@ -29,4 +29,49 @@ Sample Jetpack compose project with MVVM architecture. Project includes Hilt for
 
 ## Adaptive Icon support
 
-| <img src="https://github.com/NrupParikh/JetpackComposeMVVM/assets/108717119/95ababa5-f574-4b16-aea5-555d51784415" width="60%" height="80%"> |
+<img src="https://github.com/NrupParikh/JetpackComposeMVVM/assets/108717119/95ababa5-f574-4b16-aea5-555d51784415" width="60%" height="80%"> 
+
+
+
+### To support theme based icon (Adaptive Icon) Do below configuration changes.
+
+- compileSdk 33
+- targetSdk 33
+- Remove android:roundIcon="@mipmap/ic_launcher_round" from AndroidManifest.xml
+- in res->drawable folder add one XML file name like adaptive_icon.xml
+
+
+Add this line
+
+~~~
+<monochrome android:drawable="@drawable/adaptive_icon"/>
+~~~
+So, your anydpi-v26/launcher.xml looks like
+
+~~~
+<?xml version="1.0" encoding="utf-8"?>
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@color/ic_launcher_background"/>
+    <foreground android:drawable="@drawable/ic_launcher_foreground"/>
+    <monochrome android:drawable="@drawable/adaptive_icon"/>
+</adaptive-icon>
+~~~
+
+And make Vector drawable of your app icon with below constraints :
+
+- Make the canvas 108x108 px
+- Make the App Icon 48x48 px
+- Make sure, icon don't have shadow
+
+- To generate App icon to SVG (png to svg) use
+  https://svg2vector.com/
+
+
+- To create adaptive icon, [48px x 48px]
+  make your app icon black and white and make blank space as a transparent.
+
+- Use Paint.net software for that.
+Reference:  https://www.getpaint.net/download.html
+
+Reference
+https://developer.android.com/develop/ui/views/launch/icon_design_adaptive
