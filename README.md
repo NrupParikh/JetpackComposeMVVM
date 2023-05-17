@@ -46,13 +46,22 @@ Add this line
 ~~~
 <monochrome android:drawable="@drawable/adaptive_icon"/>
 ~~~
+So, your anydpi-v26/launcher.xml looks like
+
+~~~
+<?xml version="1.0" encoding="utf-8"?>
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@color/ic_launcher_background"/>
+    <foreground android:drawable="@drawable/ic_launcher_foreground"/>
+    <monochrome android:drawable="@drawable/adaptive_icon"/>
+</adaptive-icon>
+~~~
 
 And make Vector drawable of your app icon with below constraints :
 
 - Make the canvas 108x108 px
 - Make the App Icon 48x48 px
 - Make sure, icon don't have shadow
-
 
 - To generate App icon to SVG (png to svg) use
   https://svg2vector.com/
@@ -62,6 +71,7 @@ And make Vector drawable of your app icon with below constraints :
   make your app icon black and white and make blank space as a transparent.
 
 - Use Paint.net software for that.
+Reference:  https://www.getpaint.net/download.html
 
 Reference
 https://developer.android.com/develop/ui/views/launch/icon_design_adaptive
