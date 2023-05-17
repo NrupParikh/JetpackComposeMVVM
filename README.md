@@ -12,6 +12,7 @@ Sample Jetpack compose project with MVVM architecture. Project includes Hilt for
 - Flow for emit and collect data
 - Coil for Image loading
 - Swipe Refresh in Home and Detail screen
+- Adaptive Icon : Theme based Icon support
 
 ## This repository show the List of Country Flags and you can select to know it's name
 
