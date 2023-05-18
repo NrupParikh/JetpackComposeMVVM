@@ -52,8 +52,8 @@ class DetailsViewModel @Inject constructor(
 
     // Load Country Details when VM Created
     init {
-        Log.d("TAG","Country Code $countryCode")
-        Log.d("TAG","Country Name $countryName")
+        Log.d("TAG", "Country Code $countryCode")
+        Log.d("TAG", "Country Name $countryName")
         getCountryDetails()
     }
 }

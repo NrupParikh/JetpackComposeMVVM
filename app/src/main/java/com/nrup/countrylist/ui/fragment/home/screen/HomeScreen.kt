@@ -1,6 +1,5 @@
 package com.nrup.countrylist.ui.fragment.home.screen
 
-import android.util.Log
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme

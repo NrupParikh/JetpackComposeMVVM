@@ -15,11 +15,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.nrup.countrylist.R
-import com.nrup.countrylist.ui.components.CustomProgressBar
 import com.nrup.countrylist.ui.components.ErrorButton
 import com.nrup.countrylist.ui.fragment.detail.screen.DetailsScreen
 import com.nrup.countrylist.ui.theme.CountryListTheme
 import com.nrup.countrylist.utils.Response
+import com.nrup.countrylist.utils.shimmer.DetailScreenShimmerEffect
 import com.nrup.countrylist.viewmodel.DetailsViewModel
 
 @Composable
@@ -35,11 +35,14 @@ fun DetailsFragment(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
+
         when (val countryDataResponse = detailsViewModel.countryDetailsState.value) {
             is Response.Loading -> {
-                CustomProgressBar(
-                    modifier = Modifier.fillMaxWidth()
-                )
+//                CustomProgressBar(
+//                    modifier = Modifier.fillMaxWidth()
+//                )
+
+                DetailScreenShimmerEffect()
             }
 
             is Response.Success -> {

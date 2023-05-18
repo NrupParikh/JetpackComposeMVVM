@@ -1,6 +1,7 @@
 package com.nrup.countrylist.ui.fragment.home
 
 import android.content.res.Configuration
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
@@ -15,17 +16,17 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.nrup.countrylist.R
-import com.nrup.countrylist.ui.components.CustomProgressBar
 import com.nrup.countrylist.ui.components.ErrorButton
 import com.nrup.countrylist.ui.fragment.home.screen.HomeScreen
 import com.nrup.countrylist.ui.theme.CountryListTheme
 import com.nrup.countrylist.utils.Response
+import com.nrup.countrylist.utils.shimmer.ListItemShimmerEffect
 import com.nrup.countrylist.viewmodel.HomeViewModel
 
 @Composable
 fun HomeFragment(
     homeViewModel: HomeViewModel = hiltViewModel(),
-    onClickToDetailScreen: (Triple<Int, String,String>) -> Unit = {},
+    onClickToDetailScreen: (Triple<Int, String, String>) -> Unit = {},
 ) {
     // For swipe to refresh
     val isLoading by homeViewModel.isLoading.collectAsState()
@@ -35,11 +36,20 @@ fun HomeFragment(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
+
         when (val countryResponse = homeViewModel.countryListState.value) {
             is Response.Loading -> {
+                /*
+                // As we are showing shimmer loading effect, this code is commented
                 CustomProgressBar(
-                    modifier = Modifier.fillMaxWidth()
-                )
+                     modifier = Modifier.fillMaxWidth()
+                 )*/
+
+                Column {
+                    repeat(7) {
+                        ListItemShimmerEffect()
+                    }
+                }
             }
 
             is Response.Success -> {
