@@ -32,6 +32,9 @@ Sample Jetpack compose project with MVVM architecture. Project includes Hilt for
 
 <img src="https://github.com/NrupParikh/JetpackComposeMVVM/assets/108717119/95ababa5-f574-4b16-aea5-555d51784415" width="60%" height="80%"> 
 
+## Video of my work
+
+https://github.com/NrupParikh/JetpackComposeMVVM/assets/108717119/b2d6bfc6-fd31-485e-8f7d-ed455f60747d
 
 
 ### To support theme based icon (Adaptive Icon) Do below configuration changes.
