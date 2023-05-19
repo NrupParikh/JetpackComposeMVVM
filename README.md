@@ -75,3 +75,6 @@ Reference:  https://www.getpaint.net/download.html
 
 Reference
 https://developer.android.com/develop/ui/views/launch/icon_design_adaptive
+
+## Link to learn compose step by step
+https://developer.android.com/courses/android-basics-compose/course
