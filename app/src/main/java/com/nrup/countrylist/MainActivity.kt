@@ -64,4 +64,73 @@ fun MainScreen() {
     }
 }
 
+// =================== with network check
+
+
+//@Composable
+//fun MainScreen() {
+//
+//    // Register the NetworkCallback
+//
+//    val status = networkStatusListener()
+//
+//    // val isInternetConnected = checkInternetConnectivity()
+//    // Log.d("TAG", "MainActivity isInternetConnected $isInternetConnected")
+//
+//    if (!status.value) {
+////        NoInternetConnectivity()
+//
+//        var showCustomOkCancelDialogWithResult by remember { mutableStateOf(true) }
+//        Log.d(
+//            "TAG",
+//            "MainActivity showCustomOkCancelDialogWithResult $showCustomOkCancelDialogWithResult"
+//        )
+//
+//        if (showCustomOkCancelDialogWithResult) {
+//            CustomOkCancelDialog(
+//                message = stringResource(id = R.string.no_internet_connection),
+//                hasNegativeButton = false,
+//                onDismiss = {
+//                    showCustomOkCancelDialogWithResult = !showCustomOkCancelDialogWithResult
+//                },
+//                onNegativeClick = {
+//                    //showCustomOkCancelDialogWithResult = !showCustomOkCancelDialogWithResult
+//                },
+//                onPositiveClick = {
+//                    showCustomOkCancelDialogWithResult = !showCustomOkCancelDialogWithResult
+//                }
+//            )
+//        }
+//
+//    } else {
+//        val navController = rememberNavController()
+//        NavHost(
+//            navController = navController,
+//            startDestination = Route.Home.route
+//        ) {
+//
+//            composable(route = Route.Home.route) {
+//                HomeFragment {
+//                    navController.navigate(route = "$DETAIL_SCREEN/${it.second}/${it.third}")
+//                }
+//            }
+//
+//            composable(route = "$DETAIL_SCREEN/{$ARG_COUNTRY_CODE}/{$ARG_COUNTRY_NAME}",
+//                arguments = listOf(
+//                    navArgument(ARG_COUNTRY_CODE) {
+//                        type = NavType.StringType
+//                        defaultValue = ""
+//                    },
+//                    navArgument(ARG_COUNTRY_NAME) {
+//                        type = NavType.StringType
+//                        defaultValue = ""
+//                    }
+//                )
+//            ) {
+//                DetailsFragment()
+//            }
+//        }
+//    }
+//
+//}
 

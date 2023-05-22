@@ -5,4 +5,5 @@
     <string name="no">No</string>
     <string name="attribute">Attribute</string>
     <string name="value">Value</string>
+    <string name="no_internet_connection">Please check the internet connection.</string>
 </resources>

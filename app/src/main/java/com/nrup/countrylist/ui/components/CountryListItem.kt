@@ -1,5 +1,6 @@
 package com.nrup.countrylist.ui.components
 
+import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -19,14 +20,17 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.nrup.countrylist.R
 import com.nrup.countrylist.domain.model.countrylist.CountryData
+import com.nrup.countrylist.utils.networkcheck.checkInternetConnectivity
 
 @Composable
 fun CountryListItem(
     index: Int,
     data: CountryData?,
     selected: Boolean,
-    onClick: ((Triple<Int, String,String>) -> Unit)?,
+    onClick: ((Triple<Int, String, String>) -> Unit)?,
 ) {
+    val isInternetConnected = checkInternetConnectivity()
+    Log.d("TAG", "MainActivity $isInternetConnected")
 
     val imagePainter = rememberAsyncImagePainter(
         model = data?.flags?.png,
@@ -50,8 +54,14 @@ fun CountryListItem(
         Image(
             modifier = Modifier
                 .fillMaxSize()
-                .clickable {
-                    onClick?.invoke(Triple(index, data?.alpha2Code.toString(),data?.name.toString()))
+                .clickable(isInternetConnected) {
+                    onClick?.invoke(
+                        Triple(
+                            index,
+                            data?.alpha2Code.toString(),
+                            data?.name.toString()
+                        )
+                    )
                 },
             painter = imagePainter,
             contentDescription = "",

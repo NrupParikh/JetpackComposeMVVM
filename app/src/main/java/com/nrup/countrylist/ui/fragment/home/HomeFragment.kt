@@ -9,7 +9,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -20,6 +23,9 @@ import com.nrup.countrylist.ui.components.ErrorButton
 import com.nrup.countrylist.ui.fragment.home.screen.HomeScreen
 import com.nrup.countrylist.ui.theme.CountryListTheme
 import com.nrup.countrylist.utils.Response
+import com.nrup.countrylist.utils.networkcheck.NoConnectivityException
+import com.nrup.countrylist.utils.networkcheck.NoInternetConnectivity
+import com.nrup.countrylist.utils.networkcheck.checkInternetConnectivity
 import com.nrup.countrylist.utils.shimmer.ListItemShimmerEffect
 import com.nrup.countrylist.viewmodel.HomeViewModel
 
@@ -28,6 +34,10 @@ fun HomeFragment(
     homeViewModel: HomeViewModel = hiltViewModel(),
     onClickToDetailScreen: (Triple<Int, String, String>) -> Unit = {},
 ) {
+//    val context = LocalContext.current
+//    val isInternetConnected = checkInternetConnectivity()
+//    val isOnline by remember { mutableStateOf(isInternetConnected) }
+
     // For swipe to refresh
     val isLoading by homeViewModel.isLoading.collectAsState()
     val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = isLoading)
@@ -64,14 +74,21 @@ fun HomeFragment(
             }
 
             is Response.Failure -> {
-                ErrorButton(modifier = Modifier.fillMaxWidth(),
-                    text = stringResource(id = R.string.error),
-                    onClick = {
-                        homeViewModel.getCountryList()
-                    })
+                val exception = countryResponse.e
+                if (exception is NoConnectivityException) {
+                    exception.localizedMessage?.let {
+                        NoInternetConnectivity(
+                            onRetryClick = { homeViewModel.getCountryList() })
+                    }
+                } else {
+                    ErrorButton(modifier = Modifier.fillMaxWidth(),
+                        text = stringResource(id = R.string.error),
+                        onClick = {
+                            homeViewModel.getCountryList()
+                        })
+                }
             }
         }
-
     }
 }
 

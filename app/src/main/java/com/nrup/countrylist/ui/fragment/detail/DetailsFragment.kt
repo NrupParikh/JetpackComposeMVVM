@@ -19,6 +19,8 @@ import com.nrup.countrylist.ui.components.ErrorButton
 import com.nrup.countrylist.ui.fragment.detail.screen.DetailsScreen
 import com.nrup.countrylist.ui.theme.CountryListTheme
 import com.nrup.countrylist.utils.Response
+import com.nrup.countrylist.utils.networkcheck.NoConnectivityException
+import com.nrup.countrylist.utils.networkcheck.NoInternetConnectivity
 import com.nrup.countrylist.utils.shimmer.DetailScreenShimmerEffect
 import com.nrup.countrylist.viewmodel.DetailsViewModel
 
@@ -55,11 +57,20 @@ fun DetailsFragment(
             }
 
             is Response.Failure -> {
-                ErrorButton(modifier = Modifier.fillMaxWidth(),
-                    text = stringResource(id = R.string.error),
-                    onClick = {
-                        detailsViewModel.getCountryDetails()
-                    })
+                val exception = countryDataResponse.e
+
+                if (exception is NoConnectivityException) {
+                    exception.localizedMessage?.let {
+                        NoInternetConnectivity(
+                            onRetryClick = { detailsViewModel.getCountryDetails() })
+                    }
+                } else {
+                    ErrorButton(modifier = Modifier.fillMaxWidth(),
+                        text = stringResource(id = R.string.error),
+                        onClick = {
+                            detailsViewModel.getCountryDetails()
+                        })
+                }
             }
         }
     }

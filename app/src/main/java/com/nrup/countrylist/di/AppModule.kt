@@ -6,6 +6,7 @@ import com.nrup.countrylist.domain.repository.CountryRepository
 import com.nrup.countrylist.network.repository.CountryRepositoryImpl
 import com.nrup.countrylist.network.service.CountryService
 import com.nrup.countrylist.utils.Const.BASE_URL
+import com.nrup.countrylist.utils.networkcheck.NetworkConnectionInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,9 +31,10 @@ class AppModule {
     // Returns OkHttpClient singleton object
     @Provides
     @Singleton
-    fun provideAuthInterceptorOkHttpClient(): OkHttpClient {
+    fun provideAuthInterceptorOkHttpClient(context: Context): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            .addInterceptor(NetworkConnectionInterceptor(context))
             .build()
     }
 
