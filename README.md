@@ -20,6 +20,8 @@ https://github.com/NrupParikh/JetpackComposeMVVM/assets/108717119/b2d6bfc6-fd31-
 - Swipe Refresh in Home and Detail screen
 - Adaptive Icon : Theme based Icon support
 - Shimmer Effect (Theme based)
+- Network Check
+- Retry functionality
 
 ## This repository show the List of Country Flags and you can select to know it's name
 
@@ -32,6 +34,9 @@ https://github.com/NrupParikh/JetpackComposeMVVM/assets/108717119/b2d6bfc6-fd31-
 |-----------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
 | <img src="https://github.com/NrupParikh/JetpackComposeMVVM/assets/108717119/bdf0a830-b7ce-4e73-9fa8-169e4d7859cb" width="100%" height="100%"> | <img src="https://github.com/NrupParikh/JetpackComposeMVVM/assets/108717119/9ad77585-3eab-4502-b044-d29393da4f43" width="100%" height="100%"> | <img src="https://github.com/NrupParikh/JetpackComposeMVVM/assets/108717119/80c4fa9e-8096-4a98-8dee-6a68dfee0cc4" width="100%" height="100%"> | <img src="https://github.com/NrupParikh/JetpackComposeMVVM/assets/108717119/67d4f10d-e6ab-417d-9e30-049b75dee68c" width="100%" height="100%"> |
 
+### Internet check and Retry feature
+
+<img src="https://github.com/NrupParikh/JetpackComposeMVVM/assets/108717119/f661f4a1-414f-4b0e-b383-5aace70e757e" width="30%" height="50%">
 
 ### To support theme based icon (Adaptive Icon) Do below configuration changes.
 
