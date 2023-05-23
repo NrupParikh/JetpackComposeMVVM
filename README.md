@@ -10,6 +10,10 @@ https://github.com/NrupParikh/JetpackComposeMVVM/assets/108717119/b2d6bfc6-fd31-
 - Jetpack Compose
 - MVVM architecture [ model-View-View Model]
 - Hilt for DI
+- Scaffold
+- TopAppBar
+- BottomBar [ NavigationBar ]
+- BottomNavItem
 - Navigation compose
 - Retrofit
 - OkHttp logging
@@ -39,6 +43,12 @@ https://github.com/NrupParikh/JetpackComposeMVVM/assets/108717119/b2d6bfc6-fd31-
 ### Internet check and Retry feature
 
 <img src="https://github.com/NrupParikh/JetpackComposeMVVM/assets/108717119/f661f4a1-414f-4b0e-b383-5aace70e757e" width="30%" height="50%">
+
+### Top App Bar and Bottom Navigation
+
+| #1                                                                                                                                            | #2                                                                                                                                            | #3                                                                                                                                            |
+|-----------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| <img src="https://github.com/NrupParikh/JetpackComposeMVVM/assets/108717119/fcee4867-7486-4a8e-b46a-baf839c4d347" width="100%" height="100%"> | <img src="https://github.com/NrupParikh/JetpackComposeMVVM/assets/108717119/fb896992-bfd4-4507-8aff-6bd62e90b75a" width="100%" height="100%"> | <img src="https://github.com/NrupParikh/JetpackComposeMVVM/assets/108717119/2ef7ef43-8c59-4d0b-9cef-e04484758765" width="100%" height="100%"> |
 
 ### To support theme based icon (Adaptive Icon) Do below configuration changes.
 
