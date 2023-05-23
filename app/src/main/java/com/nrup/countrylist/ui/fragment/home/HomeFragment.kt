@@ -9,10 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -25,7 +22,6 @@ import com.nrup.countrylist.ui.theme.CountryListTheme
 import com.nrup.countrylist.utils.Response
 import com.nrup.countrylist.utils.networkcheck.NoConnectivityException
 import com.nrup.countrylist.utils.networkcheck.NoInternetConnectivity
-import com.nrup.countrylist.utils.networkcheck.checkInternetConnectivity
 import com.nrup.countrylist.utils.shimmer.ListItemShimmerEffect
 import com.nrup.countrylist.viewmodel.HomeViewModel
 

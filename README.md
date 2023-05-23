@@ -22,6 +22,8 @@ https://github.com/NrupParikh/JetpackComposeMVVM/assets/108717119/b2d6bfc6-fd31-
 - Shimmer Effect (Theme based)
 - Network Check
 - Retry functionality
+- App Bar
+- Bottom Navigation Bar
 
 ## This repository show the List of Country Flags and you can select to know it's name
 
@@ -83,3 +85,6 @@ https://developer.android.com/develop/ui/views/launch/icon_design_adaptive
 
 ## Link to learn compose step by step
 https://developer.android.com/courses/android-basics-compose/course
+
+## Other useful links
+https://medium.com/geekculture/bottom-navigation-in-jetpack-compose-android-9cd232a8b16

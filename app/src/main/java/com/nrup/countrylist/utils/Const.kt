@@ -13,8 +13,12 @@ object Const{
 
     // SCREEN PARAMETERS
     const val HOME_SCREEN = "home"
+
     const val DETAIL_SCREEN  = "detail"
     const val DETAIL_ARG_COUNTRY_ID = "alpha2Code"
+
+    const val FAVORITE_SCREEN = "favorite"
+    const val SETTINGS_SCREEN = "settings"
 
 
 }
