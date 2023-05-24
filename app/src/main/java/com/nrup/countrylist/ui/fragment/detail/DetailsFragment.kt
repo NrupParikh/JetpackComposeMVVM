@@ -37,8 +37,8 @@ fun DetailsFragment(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
-
-        when (val countryDataResponse = detailsViewModel.countryDetailsState.value) {
+        when (val countryDataResponse =
+            detailsViewModel.countryDetailsState.collectAsState().value) {
             is Response.Loading -> {
 //                CustomProgressBar(
 //                    modifier = Modifier.fillMaxWidth()
@@ -52,7 +52,10 @@ fun DetailsFragment(
                 SwipeRefresh(state = swipeRefreshState, onRefresh = {
                     detailsViewModel.getCountryDetails()
                 }) {
-                    DetailsScreen(countryData = countryDataResponse.data)
+                    val data = countryDataResponse.data
+                    if (data != null) {
+                        DetailsScreen(countryData = countryDataResponse.data)
+                    }
                 }
             }
 

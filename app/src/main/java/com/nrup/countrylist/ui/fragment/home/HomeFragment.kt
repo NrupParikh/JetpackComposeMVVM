@@ -1,6 +1,7 @@
 package com.nrup.countrylist.ui.fragment.home
 
 import android.content.res.Configuration
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -10,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -43,7 +45,7 @@ fun HomeFragment(
         color = MaterialTheme.colorScheme.background
     ) {
 
-        when (val countryResponse = homeViewModel.countryListState.value) {
+        when (val countryResponse = homeViewModel.countryListState.collectAsState().value) {
             is Response.Loading -> {
                 /*
                 // As we are showing shimmer loading effect, this code is commented
@@ -59,12 +61,18 @@ fun HomeFragment(
             }
 
             is Response.Success -> {
+
                 SwipeRefresh(state = swipeRefreshState, onRefresh = {
                     homeViewModel.getCountryList()
                 }) {
-                    HomeScreen(
-                        countryResponse.data, onClickToDetailScreen = onClickToDetailScreen
-                    )
+                    val data = countryResponse.data
+                    if (data != null) {
+                        Toast.makeText(LocalContext.current, "Success", Toast.LENGTH_SHORT).show()
+                        HomeScreen(
+                            data,
+                            onClickToDetailScreen = onClickToDetailScreen
+                        )
+                    }
                 }
 
             }

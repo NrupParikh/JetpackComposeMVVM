@@ -1,15 +1,13 @@
 package com.nrup.countrylist.viewmodel
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nrup.countrylist.domain.model.countrylist.CountryListResponse
 import com.nrup.countrylist.domain.repository.CountryRepository
 import com.nrup.countrylist.utils.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -26,8 +24,8 @@ class HomeViewModel @Inject constructor(
     val isLoading = _isLoading.asStateFlow()
 
     private val _countryListState =
-        mutableStateOf<Response<CountryListResponse>>(Response.Success(null))
-    val countryListState: State<Response<CountryListResponse>> = _countryListState
+        MutableStateFlow<Response<CountryListResponse>>(Response.Success(null))
+    val countryListState: StateFlow<Response<CountryListResponse>> = _countryListState.asStateFlow()
 
     fun getCountryList() {
         viewModelScope.launch {

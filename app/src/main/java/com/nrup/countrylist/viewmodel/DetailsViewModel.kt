@@ -1,8 +1,6 @@
 package com.nrup.countrylist.viewmodel
 
 import android.util.Log
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,6 +11,7 @@ import com.nrup.countrylist.utils.Const.ARG_COUNTRY_NAME
 import com.nrup.countrylist.utils.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -36,9 +35,9 @@ class DetailsViewModel @Inject constructor(
     // ======== COUNTRY DETAILS
 
     private val _countryDetailsState =
-        mutableStateOf<Response<CountryData>>(Response.Success(null))
+        MutableStateFlow<Response<CountryData>>(Response.Success(null))
 
-    val countryDetailsState: State<Response<CountryData>> = _countryDetailsState
+    val countryDetailsState: StateFlow<Response<CountryData>> = _countryDetailsState.asStateFlow()
 
     fun getCountryDetails() {
         viewModelScope.launch {
