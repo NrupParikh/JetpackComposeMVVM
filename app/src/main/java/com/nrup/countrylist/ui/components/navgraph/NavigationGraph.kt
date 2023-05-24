@@ -1,6 +1,5 @@
 package com.nrup.countrylist.ui.components.navgraph
 
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -17,7 +16,7 @@ import com.nrup.countrylist.utils.Const.DETAIL_SCREEN
 import com.nrup.countrylist.utils.Route
 
 @Composable
-fun NavigationGraph(navController: NavHostController, padding: PaddingValues) {
+fun NavigationGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
         startDestination = Route.Home.route

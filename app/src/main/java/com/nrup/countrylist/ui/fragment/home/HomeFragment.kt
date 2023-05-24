@@ -44,7 +44,6 @@ fun HomeFragment(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
-
         when (val countryResponse = homeViewModel.countryListState.collectAsState().value) {
             is Response.Loading -> {
                 /*
@@ -67,7 +66,6 @@ fun HomeFragment(
                 }) {
                     val data = countryResponse.data
                     if (data != null) {
-                        Toast.makeText(LocalContext.current, "Success", Toast.LENGTH_SHORT).show()
                         HomeScreen(
                             data,
                             onClickToDetailScreen = onClickToDetailScreen
