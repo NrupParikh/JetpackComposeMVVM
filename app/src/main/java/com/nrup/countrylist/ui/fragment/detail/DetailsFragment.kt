@@ -1,13 +1,16 @@
 package com.nrup.countrylist.ui.fragment.detail
 
+import android.annotation.SuppressLint
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,9 +29,10 @@ import com.nrup.countrylist.viewmodel.DetailsViewModel
 
 @Composable
 fun DetailsFragment(
+    appTitle: MutableState<String>,
     detailsViewModel: DetailsViewModel = hiltViewModel()
 ) {
-
+    appTitle.value = "Details"
     // For swipe to refresh
     val isLoading by detailsViewModel.isLoading.collectAsState()
     val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = isLoading)
@@ -80,11 +84,12 @@ fun DetailsFragment(
 }
 
 
+@SuppressLint("UnrememberedMutableState")
 @Preview(showBackground = true)
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun DetailsFragmentPreview() {
     CountryListTheme {
-        DetailsFragment()
+        DetailsFragment(appTitle = mutableStateOf("Details"))
     }
 }

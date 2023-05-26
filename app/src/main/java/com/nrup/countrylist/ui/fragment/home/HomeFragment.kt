@@ -1,7 +1,5 @@
 package com.nrup.countrylist.ui.fragment.home
 
-import android.content.res.Configuration
-import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,16 +9,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.nrup.countrylist.R
 import com.nrup.countrylist.ui.components.ErrorButton
 import com.nrup.countrylist.ui.fragment.home.screen.HomeScreen
-import com.nrup.countrylist.ui.theme.CountryListTheme
 import com.nrup.countrylist.utils.Response
 import com.nrup.countrylist.utils.networkcheck.NoConnectivityException
 import com.nrup.countrylist.utils.networkcheck.NoInternetConnectivity
@@ -94,11 +89,12 @@ fun HomeFragment(
     }
 }
 
-@Preview(showBackground = true)
-@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-fun HomeFragmentPreview() {
-    CountryListTheme {
-        HomeFragment()
-    }
-}
+//@SuppressLint("UnrememberedMutableState")
+//@Preview(showBackground = true)
+//@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
+//@Composable
+//fun HomeFragmentPreview() {
+//    CountryListTheme {
+//        HomeFragment(onSetAppTitle = ("")->Unit)
+//    }
+//}

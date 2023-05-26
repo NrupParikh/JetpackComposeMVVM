@@ -1,6 +1,8 @@
 package com.nrup.countrylist.ui.components.topbar
 
+import android.annotation.SuppressLint
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.rounded.Menu
 import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -11,18 +13,28 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.stringResource
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import com.nrup.countrylist.R
+import androidx.navigation.NavController
+import com.nrup.countrylist.ui.components.bottomItems
+import com.nrup.countrylist.ui.components.currentRoute
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyTopAppBar() {
+fun MyTopAppBar(navController: NavController, appTitle: MutableState<String>) {
+
+    val previousBackStackEntry = navController.previousBackStackEntry
+    val currentRoute = currentRoute(navController = navController)
+
+    // Getting the Title from BottomNavItem based on current route
+    val selectedItem = bottomItems.find { it.screen_route == currentRoute }
     TopAppBar(
         title = {
             Text(
-                text = stringResource(id = R.string.app_name),
+                text = selectedItem?.title ?: appTitle.value,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 color = MaterialTheme.colorScheme.inversePrimary
@@ -30,15 +42,34 @@ fun MyTopAppBar() {
         },
         colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = MaterialTheme.colorScheme.primary),
         navigationIcon = {
-            IconButton(
-                onClick = { },
-            ) {
-                Icon(
-                    imageVector = Icons.Rounded.Menu,
-                    contentDescription = "MenuIcon",
-                    tint = MaterialTheme.colorScheme.inversePrimary
-                )
+
+            // If current screen is 1st screen of BottomNavigation
+            // Ex. Home/Fav/Setting then drawer icon shown or back icon
+
+            if (selectedItem?.title != null) {
+                IconButton(
+                    onClick = { },
+                ) {
+                    Icon(
+                        imageVector = Icons.Rounded.Menu,
+                        contentDescription = "MenuIcon",
+                        tint = MaterialTheme.colorScheme.inversePrimary
+                    )
+                }
+            } else {
+                IconButton(
+                    onClick = {
+                        navController.navigateUp()
+                    },
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.ArrowBack,
+                        contentDescription = "BackIcon",
+                        tint = MaterialTheme.colorScheme.inversePrimary
+                    )
+                }
             }
+
         },
         actions = {
             IconButton(onClick = { }) {
@@ -50,10 +81,16 @@ fun MyTopAppBar() {
             }
         }
     )
+
 }
 
+
+@SuppressLint("UnrememberedMutableState")
 @Composable
 @Preview(showBackground = true)
 fun LightPreviewMyTopAppBar() {
-    MyTopAppBar()
+    MyTopAppBar(
+        navController = NavController(LocalContext.current),
+        appTitle = mutableStateOf("Title")
+    )
 }

@@ -1,11 +1,11 @@
 package com.nrup.countrylist.utils
 
-import com.nrup.countrylist.utils.Const.FAVORITE_SCREEN
-import com.nrup.countrylist.utils.Const.HOME_SCREEN
-import com.nrup.countrylist.utils.Const.SETTINGS_SCREEN
+import com.nrup.countrylist.utils.Const.ROUTE_FAVOURITE
+import com.nrup.countrylist.utils.Const.ROUTE_HOME
+import com.nrup.countrylist.utils.Const.ROUTE_SETTINGS
 
 sealed class Route(val route: String) {
-    object Home : Route(HOME_SCREEN)
-    object Favourite : Route(FAVORITE_SCREEN)
-    object Settings : Route(SETTINGS_SCREEN)
+    object Home : Route(ROUTE_HOME)
+    object Favourite : Route(ROUTE_FAVOURITE)
+    object Settings : Route(ROUTE_SETTINGS)
 }

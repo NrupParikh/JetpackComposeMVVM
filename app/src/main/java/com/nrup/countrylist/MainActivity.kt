@@ -4,21 +4,22 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.nrup.countrylist.ui.components.bottomnav.BottomNavItem
+import com.nrup.countrylist.ui.components.bottomItems
 import com.nrup.countrylist.ui.components.bottomnav.MyBottomNavigation
+import com.nrup.countrylist.ui.components.currentRoute
 import com.nrup.countrylist.ui.components.navgraph.NavigationGraph
 import com.nrup.countrylist.ui.components.topbar.MyTopAppBar
 import com.nrup.countrylist.ui.theme.CountryListTheme
+import com.nrup.countrylist.utils.Const.ROUTE_FAVOURITE
+import com.nrup.countrylist.utils.Const.ROUTE_HOME
+import com.nrup.countrylist.utils.Const.ROUTE_SETTINGS
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -35,31 +36,28 @@ class MainActivity : ComponentActivity() {
                 //https://medium.com/geekculture/bottom-navigation-in-jetpack-compose-android-9cd232a8b16
 
                 val navController = rememberNavController()
-                val backStackEntry = navController.currentBackStackEntryAsState()
+                val currentRoute = currentRoute(navController = navController)
+                val appTitle = remember { mutableStateOf("") }
 
-                val items = listOf(
-                    BottomNavItem.Home,
-                    BottomNavItem.Favorite,
-                    BottomNavItem.Settings
-                )
 
                 Scaffold(
                     topBar = {
-                        MyTopAppBar()
+                        MyTopAppBar(navController = navController, appTitle)
                     }, content = { padding ->
                         // This padding not overlap the content to TopBar and BottomBar
                         Box(
                             modifier = Modifier.padding(padding)
                         ) {
-                            NavigationGraph(navController = navController)
+                            NavigationGraph(navController = navController, title = appTitle)
                         }
                     },
                     bottomBar = {
-                        MyBottomNavigation(
-                            navController = navController,
-                            bottomNavigationItems = items,
-                            backStackEntry
-                        )
+                        if (currentRoute == ROUTE_HOME || currentRoute == ROUTE_FAVOURITE || currentRoute == ROUTE_SETTINGS) {
+                            MyBottomNavigation(
+                                navController = navController,
+                                bottomNavigationItems = bottomItems
+                            )
+                        }
                     }
                 )
             }

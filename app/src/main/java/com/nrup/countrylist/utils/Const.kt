@@ -11,14 +11,16 @@ object Const{
     const val ARG_COUNTRY_CODE = "countryCode"
     const val ARG_COUNTRY_NAME = "countryName"
 
-    // SCREEN PARAMETERS
-    const val HOME_SCREEN = "home"
+    // ROUTE
+    const val ROUTE_HOME = "home"
+    const val ROUTE_DETAIL  = "detail"
+    const val ROUTE_FAVOURITE = "favorite"
+    const val ROUTE_SETTINGS = "settings"
 
-    const val DETAIL_SCREEN  = "detail"
-    const val DETAIL_ARG_COUNTRY_ID = "alpha2Code"
-
-    const val FAVORITE_SCREEN = "favorite"
-    const val SETTINGS_SCREEN = "settings"
-
+    // Screen Name
+    const val TITLE_HOME_SCREEN = "Home"
+    const val TITLE_FAVOURITE_SCREEN = "Favorite"
+    const val TITLE_SETTINGS_SCREEN = "Settings"
+    const val TITLE_DETAIL_SCREEN = "Details"
 
 }

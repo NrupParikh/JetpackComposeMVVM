@@ -1,6 +1,7 @@
 package com.nrup.countrylist.ui.components.navgraph
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -12,11 +13,11 @@ import com.nrup.countrylist.ui.fragment.home.HomeFragment
 import com.nrup.countrylist.ui.fragment.settings.SettingsFragment
 import com.nrup.countrylist.utils.Const.ARG_COUNTRY_CODE
 import com.nrup.countrylist.utils.Const.ARG_COUNTRY_NAME
-import com.nrup.countrylist.utils.Const.DETAIL_SCREEN
+import com.nrup.countrylist.utils.Const.ROUTE_DETAIL
 import com.nrup.countrylist.utils.Route
 
 @Composable
-fun NavigationGraph(navController: NavHostController) {
+fun NavigationGraph(navController: NavHostController, title: MutableState<String>) {
     NavHost(
         navController = navController,
         startDestination = Route.Home.route
@@ -24,13 +25,13 @@ fun NavigationGraph(navController: NavHostController) {
 
         // Home Screen
         composable(route = Route.Home.route) {
-            HomeFragment {
-                navController.navigate(route = "$DETAIL_SCREEN/${it.second}/${it.third}")
+            HomeFragment() {
+                navController.navigate(route = "$ROUTE_DETAIL/${it.second}/${it.third}")
             }
         }
 
         // Home Details Screen
-        composable(route = "$DETAIL_SCREEN/{$ARG_COUNTRY_CODE}/{$ARG_COUNTRY_NAME}",
+        composable(route = "$ROUTE_DETAIL/{$ARG_COUNTRY_CODE}/{$ARG_COUNTRY_NAME}",
             arguments = listOf(
                 navArgument(ARG_COUNTRY_CODE) {
                     type = NavType.StringType
@@ -42,7 +43,7 @@ fun NavigationGraph(navController: NavHostController) {
                 }
             )
         ) {
-            DetailsFragment()
+            DetailsFragment(appTitle = title)
         }
 
         // Favourite Screen
