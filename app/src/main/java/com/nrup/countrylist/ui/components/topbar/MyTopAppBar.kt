@@ -19,8 +19,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
-import com.nrup.countrylist.ui.components.bottomItems
+import com.nrup.countrylist.ui.components.bottomnav.bottomItems
 import com.nrup.countrylist.ui.components.currentRoute
+import com.nrup.countrylist.utils.Const
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -72,13 +73,16 @@ fun MyTopAppBar(navController: NavController, appTitle: MutableState<String>) {
 
         },
         actions = {
-            IconButton(onClick = { }) {
-                Icon(
-                    imageVector = Icons.Rounded.Search,
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.inversePrimary
-                )
+            if (currentRoute == Const.ROUTE_HOME ) {
+                IconButton(onClick = { }) {
+                    Icon(
+                        imageVector = Icons.Rounded.Search,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.inversePrimary
+                    )
+                }
             }
+
         }
     )
 

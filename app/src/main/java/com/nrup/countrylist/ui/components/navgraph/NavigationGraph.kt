@@ -7,9 +7,12 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.nrup.countrylist.ui.fragment.aboutUs.AboutUsFragment
+import com.nrup.countrylist.ui.fragment.contactus.ContactUsFragment
 import com.nrup.countrylist.ui.fragment.detail.DetailsFragment
 import com.nrup.countrylist.ui.fragment.favourite.FavouriteFragment
 import com.nrup.countrylist.ui.fragment.home.HomeFragment
+import com.nrup.countrylist.ui.fragment.place.PlaceFragment
 import com.nrup.countrylist.ui.fragment.settings.SettingsFragment
 import com.nrup.countrylist.utils.Const.ARG_COUNTRY_CODE
 import com.nrup.countrylist.utils.Const.ARG_COUNTRY_NAME
@@ -54,6 +57,22 @@ fun NavigationGraph(navController: NavHostController, title: MutableState<String
         // Settings Screen
         composable(route = Route.Settings.route) {
             SettingsFragment()
+        }
+
+        // ========= In Drawer
+        // Settings Screen
+        composable(route = Route.AboutUs.route) {
+            AboutUsFragment()
+        }
+
+        // Contact Us Screen
+        composable(route = Route.ContactUs.route) {
+            ContactUsFragment()
+        }
+
+        // Place Screen
+        composable(route = Route.Place.route) {
+            PlaceFragment()
         }
     }
 }

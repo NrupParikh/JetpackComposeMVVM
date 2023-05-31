@@ -1,4 +1,4 @@
-package com.nrup.countrylist.ui.components
+package com.nrup.countrylist.ui.components.bottomnav
 
 import com.nrup.countrylist.ui.components.bottomnav.BottomNavItem
 

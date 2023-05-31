@@ -11,7 +11,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.nrup.countrylist.ui.components.bottomItems
+import com.nrup.countrylist.ui.components.bottomnav.bottomItems
 import com.nrup.countrylist.ui.components.bottomnav.MyBottomNavigation
 import com.nrup.countrylist.ui.components.currentRoute
 import com.nrup.countrylist.ui.components.navgraph.NavigationGraph
