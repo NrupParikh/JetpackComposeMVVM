@@ -6,4 +6,15 @@
     <string name="attribute">Attribute</string>
     <string name="value">Value</string>
     <string name="no_internet_connection">Please check the internet connection.</string>
+
+    <!-- Validation msg -->
+    <string name="val_msg_enter_password">Please enter password</string>
+    <string name="val_msg_min_pass_length">Password must be 6 character long</string>
+    <string name="val_msg_max_pass_length">Password must be less than 8 character long</string>
+    <string name="val_msg_upper_case_required">Password must contains at least one uppercase letter</string>
+    <string name="val_msg_lower_case_required">Password must contains at least one lower letter</string>
+    <string name="val_msg_digit_required">Password must contains at least one digit</string>
+    <string name="val_msg_special_char_required">Password must contains special character from [@,$,_]</string>
+    <string name="val_msg_enter_email">Please enter email</string>
+    <string name="val_msg_enter_valid_email">Please enter valid email</string>
 </resources>

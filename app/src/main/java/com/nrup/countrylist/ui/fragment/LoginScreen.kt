@@ -23,6 +23,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -43,6 +44,8 @@ fun LoginScreen(
     onSignUpClick: () -> Unit,
     onForgotClick: () -> Unit,
 ) {
+    val context = LocalContext.current
+
     Column(
         modifier = Modifier
             .padding(16.dp)
@@ -84,7 +87,7 @@ fun LoginScreen(
                 }
             },
             onValueChange = {
-                loginViewModel.setEmail(it)
+                loginViewModel.setEmail(it, context)
             },
             label = { Text(text = "Email") },
             leadingIcon = {
@@ -121,7 +124,7 @@ fun LoginScreen(
                 }
             },
             onValueChange = {
-                loginViewModel.setPassword(it)
+                loginViewModel.setPassword(it, context)
             },
             label = { Text(text = "Password") },
             leadingIcon = {

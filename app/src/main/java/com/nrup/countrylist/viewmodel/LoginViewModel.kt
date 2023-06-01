@@ -1,9 +1,13 @@
 package com.nrup.countrylist.viewmodel
 
+import android.content.Context
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import com.nrup.countrylist.R
 import com.nrup.countrylist.domain.repository.CountryRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -33,18 +37,21 @@ class LoginViewModel @Inject constructor(
     private val _isEmailError = mutableStateOf(Pair(false, ""))
     val isEmailError: State<Pair<Boolean, String>> = _isEmailError
 
-    fun setEmail(email: String) {
+
+    fun setEmail(email: String, context: Context) {
         _email.value = email
-        validateEmail(email)
+//        validateEmail(email,context)
+        validateForm(context, _email.value, _password.value)
     }
 
-    fun setPassword(password: String) {
+    fun setPassword(password: String, context: Context) {
         _password.value = password
-        validatePassword(password)
+//        validatePassword(password,context)
+        validateForm(context, _email.value, _password.value)
     }
 
-    fun setPasswordVisible(isEnabled: Boolean) {
-        _passwordVisible.value = isEnabled
+    fun setPasswordVisible(isVisible: Boolean) {
+        _passwordVisible.value = isVisible
     }
 
     private fun setIsPasswordError(isError: Pair<Boolean, String>) {
@@ -55,26 +62,36 @@ class LoginViewModel @Inject constructor(
         _isEmailError.value = isError
     }
 
-
-    private fun validateForm() {
-        val isEmailValid = validateEmail(email.value)
-        val isPasswordValid = validatePassword(password.value)
+    private fun setIsLoginEnabled(isEnabled: Boolean) {
+        _isLoginEnabled.value = isEnabled
     }
 
-    private fun validatePassword(value: String): Boolean {
+
+    private fun validateForm(context: Context, email: String, password: String) {
+        val isEmailValid = validateEmail(email, context)
+        val isPasswordValid = validatePassword(password, context)
+        if (isEmailValid && isPasswordValid) {
+            Log.d("TAG", "Enable Login")
+            setIsLoginEnabled(true)
+        } else {
+            setIsLoginEnabled(false)
+        }
+    }
+
+    private fun validatePassword(value: String, context: Context): Boolean {
         when {
             value.isEmpty() -> {
-                setIsPasswordError(Pair(true, "Please enter password"))
+                setIsPasswordError(Pair(true, context.getString(R.string.val_msg_enter_password)))
                 return false
             }
 
             value.length <= 6 -> {
-                setIsPasswordError(Pair(true, "Password must be 6 character long"))
+                setIsPasswordError(Pair(true, context.getString(R.string.val_msg_min_pass_length)))
                 return false
             }
 
             value.length > 8 -> {
-                setIsPasswordError(Pair(true, "Password must be less than 8 character long"))
+                setIsPasswordError(Pair(true, context.getString(R.string.val_msg_max_pass_length)))
                 return false
             }
 
@@ -82,19 +99,24 @@ class LoginViewModel @Inject constructor(
                 setIsPasswordError(
                     Pair(
                         true,
-                        "Password must contains at least one uppercase letter"
+                        context.getString(R.string.val_msg_upper_case_required)
                     )
                 )
                 return false
             }
 
             !value.any { it.isLowerCase() } -> {
-                setIsPasswordError(Pair(true, "Password must contains at least one lower letter"))
+                setIsPasswordError(
+                    Pair(
+                        true,
+                        context.getString(R.string.val_msg_lower_case_required)
+                    )
+                )
                 return false
             }
 
             !value.any { it.isDigit() } -> {
-                setIsPasswordError(Pair(true, "Password must contains at least one digit"))
+                setIsPasswordError(Pair(true, context.getString(R.string.val_msg_digit_required)))
                 return false
             }
 
@@ -102,7 +124,7 @@ class LoginViewModel @Inject constructor(
                 setIsPasswordError(
                     Pair(
                         true,
-                        "Password must contains special character from [@,$,_]"
+                        context.getString(R.string.val_msg_special_char_required)
                     )
                 )
                 return false
@@ -115,15 +137,15 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    private fun validateEmail(value: String): Boolean {
+    private fun validateEmail(value: String, context: Context): Boolean {
         return when {
             value.isEmpty() -> {
-                setIsEmailError(Pair(true, "Please enter email"))
+                setIsEmailError(Pair(true, context.getString(R.string.val_msg_enter_email)))
                 false
             }
 
             !android.util.Patterns.EMAIL_ADDRESS.matcher(value).matches() -> {
-                setIsEmailError(Pair(true, "Please enter valid email"))
+                setIsEmailError(Pair(true, context.getString(R.string.val_msg_enter_valid_email)))
                 false
             }
 
