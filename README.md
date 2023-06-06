@@ -122,6 +122,11 @@ https://developer.android.com/develop/ui/views/launch/icon_design_adaptive
 https://developer.android.com/courses/android-basics-compose/course
 
 ## Other useful links
+- Bottom Navigation in Jetpack Compose Android
 https://medium.com/geekculture/bottom-navigation-in-jetpack-compose-android-9cd232a8b16
+
+- A simple example of using NavHost and NavController
 https://tomas-repcik.medium.com/android-jetpack-compose-and-navigation-59f5ffa1219e
+
+- Putting composables into an appropriate structure
 https://betterprogramming.pub/android-jetpack-compose-and-nesting-navigation-f72df5a84691
