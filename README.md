@@ -8,7 +8,8 @@ Sample Jetpack compose project with MVVM architecture. Project includes Hilt for
 - All those fragment transactions, navigations and intents for activities are handle by Navigation.
 
 #### NavHost
-- Graphs are wrapped in a single NavHost. It has declaration of the Routes.
+- Graphs are wrapped in a single NavHost. 
+- It has declaration of the Routes.
 
 #### navController
 - It is initialized at the root and passed to every graph. 
