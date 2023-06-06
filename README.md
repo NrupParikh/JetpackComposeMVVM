@@ -7,9 +7,14 @@ Sample Jetpack compose project with MVVM architecture. Project includes Hilt for
 - With NavHost and NavController, you can push or pop you composables.
 - All those fragment transactions, navigations and intents for activities are handle by Navigation.
 
-- NavHost : Graphs are wrapped in a single NavHost. It has declaration of the Routes
-- navController : It is initialized at the root and passed to every graph. It is shared among them.
-Every screen have access to the navController. It provides API to move around the declared routes.
+#### NavHost
+- Graphs are wrapped in a single NavHost. It has declaration of the Routes.
+
+#### navController
+- It is initialized at the root and passed to every graph. 
+- It is shared among them.
+- Every screen have access to the navController.
+- It provides API to move around the declared routes.
 - Stack can be viewed as a history of the composables
 
 # Frequently used methods are
