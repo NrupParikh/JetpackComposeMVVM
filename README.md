@@ -123,3 +123,5 @@ https://developer.android.com/courses/android-basics-compose/course
 
 ## Other useful links
 https://medium.com/geekculture/bottom-navigation-in-jetpack-compose-android-9cd232a8b16
+https://tomas-repcik.medium.com/android-jetpack-compose-and-navigation-59f5ffa1219e
+https://betterprogramming.pub/android-jetpack-compose-and-nesting-navigation-f72df5a84691
