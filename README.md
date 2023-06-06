@@ -12,12 +12,13 @@ Sample Jetpack compose project with MVVM architecture. Project includes Hilt for
 Every screen have access to the navController. It provides API to move around the declared routes.
 - Stack can be viewed as a history of the composables
 
-rememberNavController()
-navController.navigate("SecondScreen")
-navController.popBackStack()
-navController.popBackStack(inclusive: false)
+# Frequently used methods are
 
-- Inclusive parameter tells us if the targeted composable should be removed too
+- rememberNavController()
+- navController.navigate("SecondScreen")
+- navController.popBackStack()
+- navController.popBackStack(inclusive: false)
+    - Inclusive parameter tells us if the targeted composable should be removed too
 
 ## Video of my work
 
